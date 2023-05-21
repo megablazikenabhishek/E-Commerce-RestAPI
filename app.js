@@ -4,9 +4,15 @@ require("dotenv").config();
 const connection = require("./config/connection");
 
 app.use(express.json());
+app.use(require("cors")());
+app.use(express.static("public"));
 
-app.use("/api/auth/", require("./router/auth.js"));
-app.use("/api/users/", require("./router/user.js"));
+app.use("/api/auth/", require("./router/auth"));
+app.use("/api/users/", require("./router/user"));
+app.use("/api/products/", require("./router/product"));
+app.use("/api/carts/", require("./router/cart"));
+app.use("/api/orders/", require("./router/order"));
+app.use("/api/", require("./router/stripe"));
 
 const start = () => {
   try {
