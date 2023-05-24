@@ -3,12 +3,13 @@ import { Row, Col, Card, ListGroup, Badge, Button } from "react-bootstrap";
 import Rating from "./Rating";
 import { Helmet } from "react-helmet-async";
 import URI from "../URI";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useContext } from "react";
 import logger from "use-reducer-logger";
 import axios from "axios";
 import { getError } from "../utils";
 import LoadingBox from "./LoaddingBox";
 import MessageBox from "./MessageBox";
+import { Store } from "../context/Store";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -44,6 +45,14 @@ export default function ProductScreen() {
     };
     fetchData();
   }, [slug]);
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const addToCartHandler = () => {
+    ctxDispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...product, quantity: 1 },
+    });
+  };
 
   return loading ? (
     <LoadingBox />
@@ -106,7 +115,9 @@ export default function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button variant="primary">Add to Cart</Button>
+                      <Button variant="primary" onClick={addToCartHandler}>
+                        Add to Cart
+                      </Button>
                     </div>
                   </ListGroup.Item>
                 )}

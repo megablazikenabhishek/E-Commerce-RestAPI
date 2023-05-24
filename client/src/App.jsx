@@ -3,8 +3,9 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import HomeScreen from "./components/HomeScreen";
 import ProductScreen from "./components/ProductScreen";
 import { Navbar, Container, Row, Col } from "react-bootstrap";
-import { LinkContainer, Badge } from "react-router-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import Nav from "react-bootstrap/Nav";
+import Badge from "react-bootstrap/Badge";
 import { Store } from "./context/Store";
 import { useContext } from "react";
 
