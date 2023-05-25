@@ -10,6 +10,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/seed", require("./routes/seedRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/orders", require("./routes/orderRoutes"));
+app.get("/api/keys/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
+});
 
 const port = process.env.PORT || 5000;
 const start = () => {

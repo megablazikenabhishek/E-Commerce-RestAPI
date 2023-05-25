@@ -7,13 +7,14 @@ import ShippingAddressScreen from "./components/ShippingAddressScreen";
 import SigninScreen from "./components/SigninScreen";
 import SignupScreen from "./components/SignupScreen";
 import PaymentMethodScreen from "./components/PaymentMethodScreen";
+import OrderScreen from "./components/OrderScreen";
 import { Navbar, Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Badge from "react-bootstrap/Badge";
 import { Store } from "./context/Store";
 import { useContext } from "react";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import PlaceOrderScreen from "./components/PlaceOrderScreen";
@@ -30,7 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
-        {/* <ToastContainer position="bottom-center" limit={1} /> */}
+        <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark">
             <Container>
@@ -83,6 +84,7 @@ function App() {
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/payment" element={<PaymentMethodScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
+              <Route path="/order/:id" element={<OrderScreen />}></Route>
             </Routes>
           </Container>
         </main>

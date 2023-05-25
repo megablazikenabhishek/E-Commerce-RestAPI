@@ -7,7 +7,7 @@ import { useEffect, useReducer, useContext } from "react";
 import logger from "use-reducer-logger";
 import axios from "axios";
 import { getError } from "../utils";
-import LoadingBox from "./LoaddingBox";
+import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
 import { Store } from "../context/Store";
 

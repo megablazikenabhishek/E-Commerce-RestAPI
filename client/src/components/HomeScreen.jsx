@@ -6,7 +6,7 @@ import logger from "use-reducer-logger";
 import { Row, Col } from "react-bootstrap";
 import Product from "./Product";
 import { Helmet } from "react-helmet-async";
-import LoadingBox from "./LoaddingBox";
+import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
 
 const reducer = (state, action) => {
