@@ -1,24 +1,26 @@
 const express = require("express");
 const data = require("./data");
 const app = express();
+require("dotenv").config();
 
 app.use(require("cors")());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// test
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
-});
-
-app.get("/api/products/slug/:slug", (req, res) => {
-  const product = data.products.find((x) => x.slug === req.params.slug);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "Product Not Found" });
-  }
-});
+app.use("/api/seed", require("./routes/seedRoutes"));
+app.use("/api/products", require("./routes/productRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`server is listening at port:${port}...........`);
-});
+const start = () => {
+  try {
+    require("./config/connnection")(process.env.MONGO_URI);
+    app.listen(port, () => {
+      console.log(`server is listening at port:${port}...........`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
