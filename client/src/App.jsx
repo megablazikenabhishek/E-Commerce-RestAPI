@@ -8,6 +8,8 @@ import SigninScreen from "./components/SigninScreen";
 import SignupScreen from "./components/SignupScreen";
 import PaymentMethodScreen from "./components/PaymentMethodScreen";
 import OrderScreen from "./components/OrderScreen";
+import PlaceOrderScreen from "./components/PlaceOrderScreen";
+import OrderHistoryScreen from "./components/OrderHistoryScreen";
 import { Navbar, Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Nav from "react-bootstrap/Nav";
@@ -17,7 +19,7 @@ import { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import PlaceOrderScreen from "./components/PlaceOrderScreen";
+import ProfileScreen from "./components/ProfileScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -26,6 +28,9 @@ function App() {
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+    window.location.href = "/signin";
   };
 
   return (
@@ -84,7 +89,12 @@ function App() {
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/payment" element={<PaymentMethodScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
-              <Route path="/order/:id" element={<OrderScreen />}></Route>
+              <Route path="/order/:id" element={<OrderScreen />} />
+              <Route
+                path="/orderhistory"
+                element={<OrderHistoryScreen />}
+              ></Route>
+              <Route path="/profile" element={<ProfileScreen />} />
             </Routes>
           </Container>
         </main>

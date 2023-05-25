@@ -60,4 +60,12 @@ orderRouter.put(
   })
 );
 
+orderRouter.get(
+  "/mine",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.findById();
+    res.send(orders);
+  })
+);
 module.exports = orderRouter;
